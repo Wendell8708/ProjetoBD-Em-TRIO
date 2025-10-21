@@ -1,5 +1,6 @@
 
--- 1
+-- 1 Quais autores têm livros com preço unitário superior à média de preço de todos os livros no catálogo?
+-- (Mostrando o preço do livro e a média geral para comparação.) 
 SELECT DISTINCT
     A.nome AS "Autor", L.titulo "Livro" ,concat("R$ ", format(L.preco, 2, 'de_DE'))"Preço do Livro",
     concat("R$ ", format((SELECT AVG(preco) FROM Livro), 2, 'de_DE')) AS "Média de Preço dos livros"
@@ -13,7 +14,9 @@ WHERE
     select * from livro;
   -- ---------------------------------------------
   
-  -- 2
+  -- 2 Quais funcionários estão alocados no departamento de 'Vendas'?
+  -- (Mostrando nome e departamento.)
+  
     SELECT
     F.nome AS "Funcionário",
     D.nome "Departamento"
@@ -26,7 +29,9 @@ WHERE
     D.nome = 'Vendas';
     
     -- -----------------------------------------------------------------
-    -- 3 
+    -- 3 Qual é o histórico detalhado de vendas?
+-- (Listando ID da Venda, Data, o Cliente que comprou, o Título do Livro vendido e o Preço unitário do livro.)
+
    SELECT
     V.idVenda,
     V.`data` AS "DataVenda",
@@ -47,7 +52,8 @@ INNER JOIN
     
 -- ------------------------------------------------------------------
 
--- 4 
+-- 4 Quais são os livros mais vendidos no sistema?
+-- (Mostrando o Título, o Autor e o número total de vezes que o livro foi incluído em pedidos/vendas.)
 
 SELECT
     L.titulo AS "Titulo do Livro",
@@ -67,7 +73,8 @@ ORDER BY
     -- ------------------------------------------------
     
     
-    -- 5 
+    -- 5 Quais são os autores que mais venderam?
+--(Mostrando o Nome do Autor e a contagem total de livros dele que apareceram nos pedidos.)
     
     SELECT
     A.nome AS "Autor",
@@ -86,7 +93,8 @@ ORDER BY
     
 -- -------------------------------------------------------------
 
--- 6 
+-- 6 Quais funcionários recebem um salário superior à média salarial da empresa?
+-- (Mostrando o Nome, CPF, Salário e a Média Salarial Geral para contexto.)
 
 
 SELECT
@@ -103,7 +111,8 @@ ORDER BY
     
 -- -------------------------------------------------------------------
 
--- 7
+-- 7 Quais autores NÃO são de nacionalidade Portuguesa?
+-- (Listando o Nome, Data de Nascimento e a Nacionalidade dos autores que não se encaixam no critério.)
 
 SELECT
     A.nome AS "Autor",
@@ -121,7 +130,8 @@ ORDER BY
 -- ------------------------------------------------------------
 
 
--- 8 
+-- 8 Quais são as funcionárias do sexo femininoe em qual departamento elas trabalham? 
+-- (Mostrando Nome, CPF, Email, Gênero e o Departamento.)
 
 SELECT
     F.nome AS "Funcionária",
@@ -139,7 +149,8 @@ ORDER BY
     D.nome, F.nome;
     -- ------------------------------------------------------------
     
--- 9 
+-- 9 Qual é a contagem de exemplares por Departamento?
+-- (Mostrando o Nome do Departamento e o número total de exemplares de livros que estão sob sua responsabilidade.)
 
 SELECT
     D.nome AS "Departamento",
@@ -156,7 +167,7 @@ ORDER BY
 -- ------------------------------------------------------------------
 
 
--- 10 
+-- 10 Quais são os gêneros associados a cada livro? (Listando o Título do Livro e o Gênero correspondente.)
 
 SELECT
     L.titulo AS "Titulo do Livro",
@@ -172,7 +183,10 @@ ORDER BY
     
 -- ---------------------------------------------
 
--- 11 
+-- 11 Quais pedidos (ID e Data) estão em um status que NÃO seja 'Aguardando Pagamento'?
+-- (Mostrando também o Cliente e o Status do Pedido.)
+
+
 SELECT
     P.idPedido,
     P.dataPedido AS "Data Pedido",
@@ -190,7 +204,7 @@ WHERE
     -- ---------------------------------------------------------------
     
     
--- 12 
+-- 12 Quais clientes residem na cidade de 'São Paulo'? (Mostrando o Nome, Cidade e a Rua de residência.)
 
 SELECT
     C.nome_completo AS "Cliente",
@@ -205,8 +219,8 @@ WHERE
     
 -- ----------------------------------------------------------------
 
--- 13 
-
+-- 13 Quais são os títulos dos livros e as respectivas áreas de conhecimento a que pertencem?
+-- (Mostrando titulo e a area de conhecimento)
 SELECT
     L.titulo AS "Título do Livro",
     AC.descricao AS "Área de Conhecimento"
@@ -221,7 +235,7 @@ ORDER BY
     
 -- ----------------------------------------------------------------------
 
--- 14
+-- 14 Qual é o livro mais caro no catálogo? (Mostrando o Título, Autor, ISBN e seu Preço Máximo.)
 
 SELECT
     L.titulo AS "Título",
@@ -236,7 +250,8 @@ WHERE
     
     -- --------------------------------------------------------------
     
-    -- 15
+    -- 15 Quais são as palavras-chave mais utilizadas?
+-- (Mostrando a Palavra-Chave, o número total de livros associados e a lista de títulos que a utilizam.)
     
     SELECT
     PC.nome AS "Palavra-Chave",
@@ -255,7 +270,8 @@ ORDER BY
     
     -- ------------------------------------------------
     
-    -- 17 
+    -- 16 Quais vendas foram pagas em mais de uma parcela?
+-- (Listando ID da Venda, Data, Cliente, Título do Livro, Método de Pagamento e Quantidade de Parcelas.)
     
     SELECT
     V.idVenda,
@@ -284,7 +300,8 @@ ORDER BY
 -- ----------------------------------------------------------------
 
 
--- 18 
+-- 17 Quais clientes residem no mesmo estado (UF) onde mora o funcionário mais bem pago?
+-- (Mostrando Nome, Email e a UF de residência do cliente.)
 
 SELECT
     C.nome_completo AS "Cliente",
@@ -305,7 +322,8 @@ WHERE
 
 -- ----------------------------------------------------------------------------------
 
--- 19 
+-- 18 Quais funcionários não atenderam a nenhum pedido durante todo o ano de 2025?
+-- (Mostrando Nome e Departamento dos funcionários que ficaram inativos nas vendas.)
 
 SELECT
     F.nome AS "Funcionário Inativo em 2025",
@@ -326,7 +344,8 @@ WHERE
     
 -- ----------------------------------------------------------------------
 
--- 20 
+-- 19 Quais vendas tiveram um valor pago superior à média dos pagamentos realizados com Cartão de Crédito?
+-- (Mostrando ID da Venda, Cliente, Valor Pago e a Média do Cartão de Crédito para comparação.)
 
 SELECT
     V.idVenda,
@@ -352,3 +371,22 @@ WHERE
     )
 ORDER BY
     P.valorPago DESC;
+-- -----------------------------------------------------------------------
+
+
+-- 20  Quais são os exemplares (número de série e título do livro)
+-- que estão fisicamente localizados na 'Estante A1' (Localização ID 1)
+SELECT
+    E.numSerie AS "Número de Série",
+    L.titulo AS "Título do Livro",
+    L2.descricao AS "Localização Atual"
+FROM
+    Exemplar AS E
+INNER JOIN
+    Livro AS L ON E.Livro_ISBN = L.ISBN
+INNER JOIN
+    Estado AS E2 ON E.Estado_idEstado = E2.idEstado
+INNER JOIN
+    Localizacao AS L2 ON E.Localizacao_idLocalizacao = L2.idLocalizacao
+WHERE
+    L2.idLocalizacao = 1; -- Filtra Localização ID 1 (Estante A1)
