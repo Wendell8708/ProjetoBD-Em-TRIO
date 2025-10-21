@@ -20,7 +20,7 @@ O foco principal é garantir a integridade dos dados através de restrições DD
 
 O projeto está organizado na seguinte estrutura principal:
 Modelo Entidade Relacionamento
-<img width="1329" height="582" alt="MER-novo" src="https://github.com/user-attachments/assets/b1cb3120-c50a-4ff8-b4c4-2ec98a0184c2" />
+<img width="1461" height="868" alt="image" src="https://github.com/user-attachments/assets/e649112f-1430-441f-af17-d8e514e8b586" />
 
 
 Modelo Relacional
