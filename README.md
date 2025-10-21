@@ -19,3 +19,13 @@ O foco principal é garantir a integridade dos dados através de restrições DD
 ## 📂 Estrutura do Repositório
 
 O projeto está organizado na seguinte estrutura principal:
+Modelo Entidade Relacionamento
+<img width="1329" height="582" alt="MER-novo" src="https://github.com/user-attachments/assets/b1cb3120-c50a-4ff8-b4c4-2ec98a0184c2" />
+
+
+Modelo Relacional
+<img width="1836" height="1311" alt="ME-novo" src="https://github.com/user-attachments/assets/0da981b4-a871-49da-9142-1de760b9565b" />
+
+
+
+
