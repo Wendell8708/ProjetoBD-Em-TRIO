@@ -69,3 +69,12 @@ As perguntas que fundamentaram nossos scripts de select buscando um relatório q
 
 20	Quais vendas tiveram um valor pago superior à média dos pagamentos realizados com Cartão de Crédito? (Mostrando ID da Venda, Cliente, Valor Pago e a Média do Cartão de Crédito para comparação.)
 
+
+
+
+
+
+
+
+## EQUIPE : Anderson Bem, Danielle Barbosa e Wendell Barboza
+
