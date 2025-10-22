@@ -10,6 +10,115 @@ Este projeto consiste na criação e gestão de um Banco de Dados relacional par
 
 O foco principal é garantir a integridade dos dados através de restrições DDL e fornecer análises de negócio robustas (DQL) sobre vendas, desempenho de autores e organização de estoque.
 
+
+## Descrição das Relações Entre as Tabelas
+
+O banco de dados Editora foi estruturado para representar o funcionamento de uma editora de livros, abrangendo desde o cadastro de autores e obras até as vendas e pedidos realizados por clientes.
+A seguir, são descritas as principais relações entre as tabelas e o motivo de cada vínculo existir.
+
+
+#### 1. Autor e Nacionalidade
+
+Relação: 1:N (uma nacionalidade pode ter vários autores)
+
+Motivo: cada autor possui uma nacionalidade registrada, e uma mesma nacionalidade pode ser compartilhada entre diversos autores. O uso de RESTRICT evita a exclusão de uma nacionalidade ainda associada a algum autor.
+
+#### 2. Livro e Autor
+
+Relação: 1:N (um autor pode ter vários livros)
+
+Motivo: um livro normalmente pertence a um autor, mas a relação permite NULL para casos de obras sem autor definido. A integridade evita que autores vinculados a livros sejam excluídos.
+
+
+#### 3. Livro e Gênero (LivroGenero)
+
+Relação: N:N
+
+Motivo: um livro pode pertencer a vários gêneros e um gênero pode se aplicar a vários livros. A tabela de junção normaliza essa relação e o CASCADE garante exclusão automática dos vínculos.
+
+#### 4. Livro e Área de Conhecimento (LivroAreaDeConhecimento)
+
+Relação: N:N
+
+Motivo: permite classificar um livro em diferentes áreas do conhecimento, útil para obras técnicas e acadêmicas.
+
+#### 5. Livro e Palavra-Chave (PalavraChaveLivro)
+
+Relação: N:N
+
+Motivo: possibilita associar diversas palavras-chave a cada livro, auxiliando na busca e categorização de obras.
+
+#### 6. Exemplar, Livro, Localização, Estado e Departamento
+
+Relações:
+
+Livro (1) → (N) Exemplar
+
+Localização (1) → (N) Exemplar
+
+Estado (1) → (N) Exemplar
+
+Departamento (1) → (N) Exemplar
+
+Motivo: a tabela Exemplar representa as cópias físicas dos livros. Cada exemplar está vinculado a um livro específico, a uma localização (como estante ou sala), a um estado de conservação e a um departamento responsável.
+As regras de integridade variam:
+
+
+#### 7. Funcionário, Departamento, Endereço e Telefone
+
+Relações:
+
+Departamento (1) → (N) Funcionário
+
+Endereço (1) → (N) Funcionário
+
+Funcionário (1) → (N) Telefone
+
+Motivo: cada funcionário pertence a um departamento e tem um endereço cadastrado. Um funcionário pode possuir vários telefones.
+A exclusão em Telefone é feita com CASCADE, garantindo que números de um funcionário excluído também sejam removidos.
+
+#### 8. Cliente e Endereço
+
+Relação: 1:N
+
+Motivo: cada cliente pode ter um endereço cadastrado, mas o campo é opcional. O uso de SET NULL permite manter o cliente caso o endereço seja removido.
+Além disso, o campo email foi adicionado com restrição de unicidade (UNIQUE), garantindo que dois clientes não compartilhem o mesmo e-mail.
+
+#### 9. Pedido, Cliente, Funcionário, Status e Venda
+
+Relações:
+
+Cliente (1) → (N) Pedido
+
+Funcionário (1) → (N) Pedido
+
+Status (1) → (N) Pedido
+
+Venda (1) → (N) Pedido
+
+Motivo: o Pedido reúne informações sobre o cliente, o funcionário responsável, o status atual e a venda associada.
+A regra SET NULL na venda permite que um pedido exista antes de ser finalizado como venda.
+Caso se deseje uma relação 1:1 entre Pedido e Venda, pode-se aplicar uma restrição UNIQUE na chave estrangeira.
+
+#### 10. Pedido e Livro (PedidoLivro)
+
+Relação: N:N
+
+Motivo: um pedido pode conter vários livros, e cada livro pode estar presente em diversos pedidos.
+A tabela intermediária PedidoLivro gerencia essa relação e utiliza CASCADE para manter a integridade referencial.
+
+#### 11. Venda e Pagamento
+
+Relação: 1:N
+
+Motivo: uma venda pode ser quitada em uma ou mais formas de pagamento.
+A exclusão em CASCADE garante que, ao remover uma venda, todos os pagamentos associados sejam automaticamente excluídos.
+
+#### 12. Tabelas Auxiliares
+
+As tabelas Genero, AreaDeConhecimento, PalavraChave, Localizacao, Estado e Status funcionam como domínios de referência, armazenando listas fixas de valores usados por outras entidades.
+Essas tabelas ajudam a normalizar o banco e garantir a integridade dos dados.
+
 ## 🛠️ Tecnologias Utilizadas
 
 * **SGBD:** MySQL
