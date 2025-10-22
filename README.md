@@ -32,7 +32,7 @@ Modelo Relacional
 
 As perguntas que fundamentaram nossos scripts de select buscando um relatório que trouxesse informações relevantes foram: 
 
- ### 1- Quais autores têm livros com preço unitário superior à média de preço de todos os livros no catálogo? (Mostrando o preço do livro e a média geral para comparação.)
+ ### 1- Quais autores têm livros com preço unitário superior à média de preço de todos os livros no catálogo? (Mostrando Título,Autor, o preço do livro,e a média geral para comparação.)
 ```sql
 SELECT DISTINCT
     A.nome AS "Autor", L.titulo "Livro" ,concat("R$ ", format(L.preco, 2, 'de_DE'))"Preço do Livro",
@@ -44,7 +44,7 @@ INNER JOIN
 WHERE
     L.preco > (SELECT AVG(preco) FROM Livro) GROUP BY A.nome, L.titulo,L.preco ORDER BY A.nome;
 ```
-### 2- Quais funcionários estão alocados no departamento de 'Vendas'? (Mostrando nome e departamento.)
+### 2- Quais funcionários estão alocados no departamento de 'Vendas'? (Mostrando nome do funcionário e departamento.)
 ```sql
 SELECT
     F.nome AS "Funcionário",
@@ -216,7 +216,7 @@ WHERE
     E.cidade = 'São Paulo';
 ```
 
-### 13	Quais são os títulos dos livros e as respectivas áreas de conhecimento a que pertencem?
+### 13	Quais são os títulos dos livros e as respectivas áreas de conhecimento a que pertencem?(Mostrando titulo do livro e a Area de conhecimento)
 ```sql
 SELECT
     L.titulo AS "Título do Livro",
@@ -324,7 +324,7 @@ WHERE
         WHERE YEAR(dataPedido) = 2025 AND Funcionario_CPF IS NOT NULL
     );
 ```
-### 19 Quais vendas tiveram um valor pago superior à média dos pagamentos realizados com Cartão de Crédito? (Mostrando ID da Venda, Cliente, Valor Pago e a Média do Cartão de Crédito para comparação.)
+### 19 Quais vendas tiveram um valor pago superior à média dos pagamentos realizados com Cartão de Crédito? (Mostrando ID da Venda, Cliente,Método de Pagamento, Valor Pago e a Média do Cartão de Crédito para comparação.)
 
 ```sql
 SELECT
